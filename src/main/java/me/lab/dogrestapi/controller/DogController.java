@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -22,31 +23,31 @@ public class DogController {
         this.dogService = dogService;
     }
 
-    @GetMapping("/dogs")
+    @GetMapping("/api/dogs")
     public ResponseEntity<List<Dog>> getAllDogs(){
         List<Dog> list = dogService.retrieveDogs();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping("/dogs/name")
+    @GetMapping("/api/dogs/name")
     public ResponseEntity<List<String>> getNames(){
         List<String> list = dogService.retrieveDogNames();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping("/dogs/breed")
+    @GetMapping("/api/dogs/breed")
     public ResponseEntity<List<String>> getBreeds(){
         List<String> list = dogService.retriveDogBreed();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping("/dogs/origin")
+    @GetMapping("/api/dogs/origin")
     public ResponseEntity<List<String>> getOrigins(){
         List<String> list = dogService.retrieveDogOrigins();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping("/breed/{dogId}")
+    @GetMapping("/api/breed/{dogId}")
     public ResponseEntity<String> getBreedById(@PathVariable long dogId){
         try {
             String result = dogService.retrieveDogBreedById(dogId);
